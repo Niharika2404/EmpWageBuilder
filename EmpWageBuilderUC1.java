@@ -1,36 +1,34 @@
 public class EmpWageBuilderUC1 {
+		public static final int Part_Time = 1;
+		public static final int Full_Time = 2;
+		public static final int Emp_Rate_Per_Hour = 20;
+		public static final int Num_Of_Working_Days = 2;
+		public static final int Max_Hours_In_Month = 10;
 
-	public static void main(String[] args)
-	{
-		int WAGE_PER_HR = 20;
-		int FULL_DAY_HR = 8;
-		int PART_TIME_HR = 0;
-		int MONTHLY_WORKED_HR = 20;
-		double DAILY_PAYMENT = 0.0;
-		double MONTHLY_PAYMENT = 0.0;
-				double empCheck = Math.floor(Math.random() * 10) % 2;
-			switch (empCheck)
+
+		public static void main(String[] args) {
+			int empHrs = 0;
+			int totalEmpHrs = 0;
+			int totalWorkingDays = 0;
+			while (totalEmpHrs <= Max_Hours_In_Month && totalWorkingDays < Num_Of_Working_Days)
+			{
+				totalWorkingDays++;
+				int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+				switch (empCheck)
 				{
-					case FULL_DAY_HR:
-						{
-							System.out.println("Employee is present");
-							DAILY_PAYMENT = FULL_DAY_HR * WAGE_PER_HR;
-							MONTHLY_PAYMENT = DAILY_PAYMENT * MONTHLY_WORKED_HR;
-							break;
-						}
-					case PART_TIME_HR:
-						{
-							System.out.println("Employee is Present");
-							DAILY_PAYMENT = FULL_DAY_HR * WAGE_PER_HR * PART_TIME_HR;
-							MONTHLY_PAYMENT = DAILY_PAYMENT * MONTHLY_WORKED_HR;
-							break;
-						}
+					case Part_Time:
+						empHrs = 4;
+						break;
+					case Full_Time:
+						empHrs = 8;
+						break;
 					default:
-							{
-							System.out.println("Employee is absent");
-							break;
-							}
+						empHrs = 0;
 				}
-				System.out.println("Daily Payment: " + DAILY_PAYMENT);
+				totalEmpHrs = empHrs;
+				System.out.println("Day: " + totalWorkingDays + " Employee Hour: " + empHrs);
+			}
+			int totalEmpWage = totalEmpHrs * Emp_Rate_Per_Hour;
+			System.out.println("Total Employee Wage: " + totalEmpWage);
 	}
 }
